@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-21_01</title>
+  </head>
+  <body>
+    <h1>Список елементів з чекбоксами</h1>
+    <ul id="list"></ul>
+    <script>
+      const data = ['Елемент 1', 'Елемент 2', 'Елемент 3'];
+
+      const ul = document.getElementById('list');
+
+      data.forEach(item => {
+        const li = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            li.style.textDecoration = 'line-through';
+          } else {
+            li.style.textDecoration = 'none';
+          }
+        });
+        const label = document.createElement('label');
+        label.textContent = item;
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        ul.appendChild(li);
+      });
+    </script>
+  </body>
+</html>
+

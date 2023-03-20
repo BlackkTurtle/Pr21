@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-21_06</title>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {this.state.users.map((user, index) => (
+                    <tr key={index}>
+                        <td>
+                            <span className="user-name">{user.name}</span>
+                            <input type="text" className="edit-input" value={user.name} onChange={(event) => this.handleEditInputChange(event, index, 'name')} />
+                        </td>
+                        <td>
+                            <span className="user-age">{user.age}</span>
+                            <input type="number" className="edit-input" value={user.age} onChange={(event) => this.handleEditInputChange(event, index, 'age')} />
+                        </td>
+                        <td>
+                            <button onClick={() => this.toggleEditRow(index)}>Edit</button>
+                            <button onClick={() => this.handleDeleteRow(index)}>Delete</button>
+                            <button onClick={() => this.handleSaveRow(index)}>Save</button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    
+        <script>
+            class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        { name: "Микола", age: 30 },
+        { name: "Василь", age: 40 },
+        { name: "Петро", age: 50 },
+      ],
+      editing: null,
+    };
+  }
+
+  handleEdit(index) {
+    this.setState({ editing: index });
+  }
+
+  handleSave(index, e) {
+    const { value } = e.target;
+    const { users } = this.state;
+    users[index].name = value;
+    this.setState({ users, editing: null });
+  }
+
+  render() {
+    const { users, editing } = this.state;
+    return (
+      <table>
+        <tbody>
+          {users.map((user, index) => (
+            <tr key={index}>
+              <td>
+                {editing === index ? (
+                  <input
+                    type="text"
+                    value={user.name}
+                    onChange={(e) => this.handleSave(index, e)}
+                  />
+                ) : (
+                  user.name
+                )}
+              </td>
+              <td>{user.age}</td>
+              <td>
+                <button onClick={() => this.handleEdit(index)}>Редагувати</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+        </script>
+    </body>
+</html>

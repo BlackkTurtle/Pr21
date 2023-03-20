@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-21_07</title>
+    </head>
+    <body>
+        <h1>Туристичні маршрути</h1>
+        <form>
+            <div>
+                <input type="radio" id="route1" name="route" value="route1">
+                <label for="route1">Маршрут 1</label>
+            </div>
+            <div>
+                <input type="radio" id="route2" name="route" value="route2">
+                <label for="route2">Маршрут 2</label>
+            </div>
+            <div>
+                <input type="radio" id="route3" name="route" value="route3">
+                <label for="route3">Маршрут 3</label>
+            </div>
+            <div>
+                <input type="radio" id="route4" name="route" value="route4">
+                <label for="route4">Маршрут 4</label>
+            </div>
+        </form>
+        <p>Вибраний маршрут: <span id="selectedRoute"></span></p>
+    
+        <script>
+            const radios = document.querySelectorAll('input[type=radio][name=route]');
+            const selectedRoute = document.querySelector('#selectedRoute');
+    
+            radios.forEach(radio => radio.addEventListener('change', (event) => {
+                selectedRoute.innerText = event.target.value;
+            }));
+        </script>
+    </body>
+</html>

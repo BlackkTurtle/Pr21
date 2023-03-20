@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-21_04</title>
+    </head>
+    <body>
+        <div id="users-container"></div>
+    
+        <script>
+          const users = [
+  { name: 'Микола', surname: 'Шевченко', age: 30 },
+  { name: 'Василь', surname: 'Чумак', age: 40 },
+  { name: 'Петро', surname: 'Стеценко', age: 50 },
+];
+
+const ul = document.createElement('ul');
+document.body.appendChild(ul);
+
+users.forEach((user) => {
+  const li = document.createElement('li');
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = true;
+  li.appendChild(checkbox);
+
+  const span = document.createElement('span');
+  span.textContent = `${user.name} ${user.surname} ${user.age}`;
+  li.appendChild(span);
+
+  ul.appendChild(li);
+
+  checkbox.addEventListener('change', () => {
+    span.textContent = checkbox.checked ? `${user.name} ${user.surname} ${user.age}` : `${user.name}`;
+  });
+});
+
+        </script>
+      </body>
+</html>

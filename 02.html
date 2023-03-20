@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-21_02</title>
+  </head>
+  <body>
+    <table id="employees-table">
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Прізвище</th>
+          <th>Зарплата</th>
+          <th>Виділено</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Сума зарплат виділених працівників:</td>
+          <td id="total-salary"></td>
+        </tr>
+      </tfoot>
+    </table>
+    <script>
+      const employees = [
+        { firstName: 'Іван', lastName: 'Петров', salary: 5000 },
+        { firstName: 'Олексій', lastName: 'Сидоров', salary: 3500 },
+        { firstName: 'Марина', lastName: 'Коваленко', salary: 4500 },
+        { firstName: 'Ольга', lastName: 'Ковальчук', salary: 4000 },
+      ];
+  
+      const table = document.querySelector('#employees-table tbody');
+      let totalSalary = 0;
+      employees.forEach((employee, index) => {
+        const row = table.insertRow(index);
+        const firstNameCell = row.insertCell(0);
+        firstNameCell.textContent = employee.firstName;
+        const lastNameCell = row.insertCell(1);
+        lastNameCell.textContent = employee.lastName;
+        const salaryCell = row.insertCell(2);
+        salaryCell.textContent = employee.salary;
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = true;
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            totalSalary += employee.salary;
+          } else {
+            totalSalary -= employee.salary;
+          }
+          totalSalaryCell.textContent = totalSalary;
+        });
+        const checkboxCell = row.insertCell(3);
+        checkboxCell.appendChild(checkbox);
+      });
+  
+      const totalSalaryCell = document.querySelector('#total-salary');
+      totalSalaryCell.textContent = employees.reduce((total, employee) => total + employee.salary, 0);
+    </script>
+  </body>
+</html>

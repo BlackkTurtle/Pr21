@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-21_10</title>
+    </head>
+    <body>
+        <label for="language-select">Мова:</label>
+        <select id="language-select">
+            <option value="ukrainian">Українська</option>
+            <option value="english">Англійська</option>
+        </select>
+    
+        <label for="day-select">День тижня:</label>
+        <select id="day-select"></select>
+    
+        <script>
+            const daysOfWeek = {
+                ukrainian: ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П`ятниця', 'Субота', 'Неділя'],
+                english: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+            };
+    
+            const languageSelect = document.getElementById('language-select');
+            const daySelect = document.getElementById('day-select');
+    
+            function updateDaysOfWeek() {
+                const selectedLanguage = languageSelect.value;
+                const days = daysOfWeek[selectedLanguage];
+                daySelect.innerHTML = '';
+                for (let i = 0; i < days.length; i++) {
+                    const option = document.createElement('option');
+                    option.text = days[i];
+                    daySelect.add(option);
+                }
+            }
+    
+            languageSelect.addEventListener('change', updateDaysOfWeek);
+    
+            updateDaysOfWeek();
+        </script>
+    </body>
+</html>

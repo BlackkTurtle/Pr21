@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-21_05</title>
+    <style>
+        p {
+          display: block;
+        }
+      </style>
+    </head>
+    <body>
+      <script>
+        const ul = document.createElement('ul');
+const arr = ['Apple', 'Banana', 'Cherry'];
+
+for (let i = 0; i < arr.length; i++) {
+  const li = document.createElement('li');
+  li.textContent = arr[i];
+  li.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.value = li.textContent;
+    li.textContent = '';
+    li.appendChild(input);
+    input.addEventListener('blur', () => {
+      li.textContent = input.value;
+    });
+  });
+  ul.appendChild(li);
+}
+
+document.body.appendChild(ul);
+
+      </script>
+    </body>
+</html>
